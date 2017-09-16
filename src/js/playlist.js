@@ -12,16 +12,14 @@ function PlayList (playListName, player) {
 	this.$playlist = document.getElementById("playlist");
   this.sortNameDesc = true;
 
-  function playlistDblClickHandler(event) {
-    console.log("jinwoo");
-    player.smartPlay();
 
+  function playlistDblClickHandler(event) {
+    player.smartPlay();
   }
 
   function playlistClicnHandler(event) {
 
     var $item = EventUtil.getTarget(event);
-
 
     if (this.activeSeqId != Number($item.id.replace(/playlist-/g,""))) {
 
@@ -34,10 +32,33 @@ function PlayList (playListName, player) {
       var targetMusic = this.findBySeq(this.activeSeqId);
       player.changeTargetMusic(targetMusic);
     }
-
-
-
   }
+}
+
+PlayList.prototype.findFileDelete = function(checkedlist) {
+
+  var self = this;
+  var alertList = [];
+  this.list.forEach(function(fileObj){
+    if (checkedlist.indexOf(fileObj.seq) >= 0) {
+      var delIdx = self.findIdx(fileObj.seq);
+      self.list.splice(delIdx,1);
+    }
+  });
+  return alertList;
+
+}
+
+PlayList.prototype.findFileSeq = function(checkedlist) {
+
+  var self = this;
+  var alertList = [];
+  this.list.forEach(function(fileObj){
+    if (checkedlist.indexOf(fileObj.seq) >= 0) {
+      alertList.push(self.name+":"+fileObj.name);
+    }
+  });
+  return alertList;
 }
 
 PlayList.prototype.sort = function(sortType) {
@@ -89,7 +110,6 @@ PlayList.prototype.findIdx = function(seq) {
     }
   });
   return idx;
-
 }
 
 PlayList.prototype.findBySeq = function(seq) {
