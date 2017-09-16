@@ -1,0 +1,15 @@
+{
+  "name": "musicplayer",
+  "version": "0.0.0",
+  "description": "nhn test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/browser-sync start --server --files 'src/css/*.css,src/js/*.js,index.html'",
+    "start": "./node_modules/.bin/browser-sync start --server]"
+  },
+  "author": "superlucky",
+  "devDependencies": {
+    "browser-sync": "^2.18.13"
+  }
+}

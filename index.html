@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jinwoo-kim nhn test</title>
+	<link rel="stylesheet" href="./src/css/ie.css">
+	<link rel="stylesheet" href="./src/css/base.css">
+	<link rel="stylesheet" href="./src/css/music.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+
+</head>
+<body>
+
+<nav>
+	<div class="file-info"></div>
+	<div class="progress"></div>
+	<div class="music-nav">
+		<button type="button" id="prev">PREV</button>
+		<button type="button" id="play">PLAY</button>
+		<button type="button" id="stop">STOP</button>
+		<button type="button" id="next">NEXT</button>
+	</div>
+	<ul class="playlist-nav">
+		<li id="allfile" class="active">음원목록</li>
+		<li id="1">PlayList 1</li>
+		<li id="2">PlayList 2</li>
+		<li id="3">PlayList 2</li>
+	</ul>
+</nav>
+<main>
+	<div class="filelist" style="display: block">
+		<div class="buttons">
+			<button type="button">재생목록 생성</button>
+			<button type="button">삭제</button>
+		</div>
+		<ul id="filelist" class="list"></ul>
+	</div>
+
+	<div class="playlist" style="display:none">
+		<div class="buttons">
+			<button type="button">가나다 정렬</button>
+			<button type="button">랜덤 정렬</button>
+		</div>
+		<ul id="playlist" class="list"></ul>
+	</div>
+</main>
+
+<script id="filelist-item" type="text/template">
+  <li data-idx="{$seq}">
+    <span>
+      <label>
+        <input type="checkbox" /> 
+        {$name}
+      </label>
+    </span>
+    <span class="time">{$term}</span>
+  </li>
+</script>
+
+<script id="playlist-item" type="text/template">
+  <li>
+    그녀가 말했다.
+    <span class="time">00:40</span>
+  </li>
+</script>
+
+<script src="./src/js/base.js"></script>
+<script src="./src/js/filelist.js"></script>
+<script src="./src/js/index.js"></script>
+</body>
+</html>
+
