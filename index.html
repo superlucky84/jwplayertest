@@ -20,23 +20,20 @@
 		<button type="button" id="stop">STOP</button>
 		<button type="button" id="next">NEXT</button>
 	</div>
-	<ul class="playlist-nav">
+	<ul id="playlistnav" class="playlist-nav">
 		<li id="allfile" class="active">음원목록</li>
-		<li id="1">PlayList 1</li>
-		<li id="2">PlayList 2</li>
-		<li id="3">PlayList 2</li>
 	</ul>
 </nav>
 <main>
-	<div class="filelist" style="display: block">
+	<div id="filelistWrap" class="show">
 		<div class="buttons">
-			<button type="button">재생목록 생성</button>
+			<button id="craeatePlaylist" type="button">재생목록 생성</button>
 			<button type="button">삭제</button>
 		</div>
 		<ul id="filelist" class="list"></ul>
 	</div>
 
-	<div class="playlist" style="display:none">
+	<div id="playlistWrap" class="hide">
 		<div class="buttons">
 			<button type="button">가나다 정렬</button>
 			<button type="button">랜덤 정렬</button>
@@ -45,13 +42,12 @@
 	</div>
 </main>
 
+
 <script id="filelist-item" type="text/template">
   <li data-idx="{$seq}">
     <span>
-      <label>
-        <input type="checkbox" /> 
-        {$name}
-      </label>
+      <input type="checkbox" value="{$seq}" /> 
+      {$name}
     </span>
     <span class="time">{$term}</span>
   </li>
@@ -59,12 +55,13 @@
 
 <script id="playlist-item" type="text/template">
   <li>
-    그녀가 말했다.
-    <span class="time">00:40</span>
+		{$name}
+    <span class="time">{$term}</span>
   </li>
 </script>
 
 <script src="./src/js/base.js"></script>
+<script src="./src/js/playlist.js"></script>
 <script src="./src/js/filelist.js"></script>
 <script src="./src/js/index.js"></script>
 </body>

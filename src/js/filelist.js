@@ -1,10 +1,53 @@
 
-function FileList () {
+function FileList (playLists) {
   this.list = [];
+
+  this.$filelist = document.getElementById("filelist");
+
+  // ADD EVENT
+	var $createPlayletButton = document.getElementById("craeatePlaylist");
+	EventUtil.addHandler($createPlayletButton, "click", function () {
+	
+    var checkedlist = [];
+    var inputs = this.$filelist.getElementsByTagName("input");
+
+    for ( var inputIdx in inputs) {
+      if (!inputs[inputIdx].checked) { 
+        continue;
+      }
+      checkedlist.push(this.findBySeq(inputs[inputIdx].value));
+      inputs[inputIdx].checked = false;
+    }
+
+    if (checkedlist.length == 0 ) {
+      alert('하나로도 선택해야 합니다.');
+      return;
+    }
+
+    // 플래이리스트에 리스트 추가
+    var playList = new PlayList(playLists.generateName());
+    checkedlist.forEach(function(fileObj){
+      playList.add(fileObj);
+    });
+
+    // 플래이 리스트목록에 플레이리스트 추가
+    playLists.add(playList);
+
+	}.bind(this));
 }
 
+FileList.prototype.findBySeq = function(seq) {
+  var targetPlaylist = null;
+  this.list.forEach(function(element) {
+    if (element.seq == seq) {
+      targetPlaylist = element;
+    }
+  });
+  return targetPlaylist;
+}
+
+
 FileList.prototype.createFile = function() {
-  console.log("createfile");
 
   var seq = 1;
   var chkFilenameArr = [];
@@ -29,10 +72,9 @@ FileList.prototype.createFile = function() {
 }
 
 
-FileList.prototype.printFile = function() {
-  console.log("printFile");
+FileList.prototype.draw = function() {
 
-  var $filelist = document.getElementById("filelist");
+  //var $filelist = document.getElementById("filelist");
   var filelistItemHTML = document.getElementById("filelist-item").innerHTML;
   var appendListHtmlArray = [];
 
@@ -49,7 +91,8 @@ FileList.prototype.printFile = function() {
       'term': calculterm(listItem.term)
     }));
   }
-  $filelist.innerHTML = appendListHtmlArray.join("");
+  this.$filelist.innerHTML = appendListHtmlArray.join("");
+
 }
 
 function calculterm(term) {
