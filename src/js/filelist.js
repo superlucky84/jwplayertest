@@ -1,5 +1,5 @@
 
-function FileList (playLists) {
+function FileList (playLists, player) {
   this.list = [];
 
   this.$filelist = document.getElementById("filelist");
@@ -25,7 +25,7 @@ function FileList (playLists) {
     }
 
     // 플래이리스트에 리스트 추가
-    var playList = new PlayList(playLists.generateName());
+    var playList = new PlayList(playLists.generateName(), player);
     checkedlist.forEach(function(fileObj){
       playList.add(fileObj);
     });

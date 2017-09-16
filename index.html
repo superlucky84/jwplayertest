@@ -12,7 +12,7 @@
 <body>
 
 <nav>
-	<div class="file-info"></div>
+	<div id="file-info" class="file-info"></div>
 	<div class="progress"></div>
 	<div class="music-nav">
 		<button type="button" id="prev">PREV</button>
@@ -42,9 +42,13 @@
 	</div>
 </main>
 
+    
+<script id="file-info-item" type="text/template">
+  <span class="name">{$name}</span> <span class="term">{$term}</span>
+</script>
 
 <script id="filelist-item" type="text/template">
-  <li data-idx="{$seq}">
+  <li id="filelist-{$seq}">
     <span>
       <input type="checkbox" value="{$seq}" /> 
       {$name}
@@ -54,13 +58,15 @@
 </script>
 
 <script id="playlist-item" type="text/template">
-  <li>
+  <li id="playlist-{$seq}">
 		{$name}
     <span class="time">{$term}</span>
   </li>
 </script>
 
 <script src="./src/js/base.js"></script>
+<script src="./src/js/player.js"></script>
+<script src="./src/js/playlists.js"></script>
 <script src="./src/js/playlist.js"></script>
 <script src="./src/js/filelist.js"></script>
 <script src="./src/js/index.js"></script>

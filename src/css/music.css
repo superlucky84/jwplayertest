@@ -19,8 +19,20 @@ nav input, nav .progress, nav .file-info {
   width: 100%;
 }
 nav .file-info {
+  position: relative;
   border: 1px solid #cdcdcd;
   height: 30px;
+  padding-top: 4px;
+}
+
+nav .file-info span.name {
+  margin-left: 14px;
+}
+
+
+nav .file-info .term {
+  position: absolute;
+  right: 10px;
 }
 
 nav .progress {
