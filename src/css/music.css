@@ -93,6 +93,10 @@ main ul.list li {
 main ul.list li.active {
   background-color: #cdcdcd;
 }
+main ul.list li.play {
+  color: red;
+  font-weight: bold;
+}
 
 main ul.list li:last-child {
   border: 0px;
@@ -125,4 +129,7 @@ button {
 }
 .hide {
   display: none;
+}
+.inline {
+  display: inline;
 }

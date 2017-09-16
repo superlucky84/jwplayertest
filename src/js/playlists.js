@@ -1,8 +1,6 @@
 
-function PlayLists () {
+function PlayLists (player) {
 
-  // 선택된 플레이리스트
-  this.choicePlaylistNum = null;
 
   this.lastSeq = 0;
 
@@ -11,8 +9,20 @@ function PlayLists () {
   // 목록
   this.list = [];
 
-
 	var $playlistnav = document.getElementById("playlistnav");
+
+  this.$sortNameButton = document.getElementById("sortName");
+  this.$sortRandomButton = document.getElementById("sortRandom");
+
+    
+  EventUtil.addHandler(this.$sortRandomButton, "click", function(event) {
+    player.choicePlaylist.sort("random");
+  });
+
+  EventUtil.addHandler(this.$sortNameButton, "click", function(event) {
+    player.choicePlaylist.sort("name");
+  });
+
 	EventUtil.addHandler($playlistnav, "click", function (event) {
 
     if (this.activeList != "allfile") {
@@ -32,13 +42,20 @@ function PlayLists () {
       seq = Number(this.activeList.replace(/listnum/g,""));
       var targetPlaylist = this.findBySeq(seq);
 
+
       // 플레이리스트 그리기
       targetPlaylist.draw();
+
+      // 플레이리스트에게 선택된 리스트 보내기
+      player.choicePlaylist = targetPlaylist;
 
       document.getElementById("filelistWrap").className = "hide";
       document.getElementById("playlistWrap").className = "show";
     }
     else {
+
+      player.choicePlaylist = null;
+
       document.getElementById("filelistWrap").className = "show";
       document.getElementById("playlistWrap").className = "hide";
     }
