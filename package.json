@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "./node_modules/.bin/browser-sync start --server --files 'src/css/*.css,src/js/*.js,index.html'",
-    "start": "./node_modules/.bin/browser-sync start --server]"
+    "start": "./node_modules/.bin/browser-sync start --server]",
+    "lint": "eslint --ignore-path=./src/js/base.js ./src/js"
   },
   "author": "superlucky",
   "devDependencies": {
     "browser-sync": "^2.18.13",
+    "babel-eslint": "^8.0.0",
     "eslint": "^4.7.0",
     "eslint-config-airbnb-es5": "^1.2.0"
   }
