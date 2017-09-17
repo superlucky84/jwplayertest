@@ -192,6 +192,7 @@ PlayList.prototype.draw = function () {
 
   this.$playlist.innerHTML = appendListHtmlArray.join("");
   this.addHandler();
+  this.changePlay(this.playSeqId);
 }
 
 
