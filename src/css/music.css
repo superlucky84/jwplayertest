@@ -39,7 +39,7 @@ nav .progress {
   position: relative;
   margin-top: 10px;
   height: 7px;
-  border: 1px solid #000;
+  border: 1px solid #704141;
   border-radius: 5px;
 }
 nav .progress div {
@@ -47,8 +47,11 @@ nav .progress div {
   left: 0;
   top: 0;
   width: 0%;
-  background-color: #000;
+  background-color: #704141;
   bottom: 0;
+	-webkit-transition: width 0.5s linear;
+	transition: width 1s linear;
+
 }
 
 
@@ -61,23 +64,24 @@ ul.playlist-nav {
   text-align: left;
 }
 ul.playlist-nav li {
-  box-sizing: border-box;
-  float: left;
-  height: 30px;
-  border-right: 1px solid #cdcdcd;
-  border-bottom: 1px solid #cdcdcd;
-  font-size: 12px;
-  line-height: 2.5em;
-  padding: 0 9px;
-  margin-top: 2px;
-  width: 70px;
-  text-align: center;
-  color: #cdcdcd;
-  position: relative;
+	box-sizing: border-box;
+	float: left;
+	height: 30px;
+	border: 1px solid #563333;
+	border-left: 0px;
+	font-size: 12px;
+	line-height: 2.5em;
+	padding: 0 9px;
+	margin-top: 2px;
+	width: 70px;
+	text-align: center;
+	color: #704141;
+	position: relative;
 }
 ul.playlist-nav li.active {
-  border-color:  #000;
-  color: #000;
+	border-color: #563333;
+	color: #563333;
+	background-color: #d0b7b7;
 }
 
 ul.playlist-nav li input {
@@ -98,10 +102,14 @@ ul.playlist-nav li input {
 
 
 main ul.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-height: 407px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 407px;
+	overflow-y: scroll;
+	*height: auto;
+	*overflow-y: visible;
+	*min-height: 407px;
 }
 main ul.list li {
   position: relative;
@@ -110,15 +118,12 @@ main ul.list li {
 }
 
 main ul.list li.active {
-  background-color: #cdcdcd;
+	background-color: #e3cece;
 }
 main ul.list li.play {
-  color: red;
+  color: #a76045;
 }
 
-main ul.list li:last-child {
-  border: 0px;
-}
 main ul.list li input {
   vertical-align: top;
 }
@@ -134,12 +139,15 @@ main .time {
 }
 
 button {
-  cursor: pointer;
-  outline: none;
-  border: 1px solid #000;
-  background-color: #fff;
-  padding: 4px 9px;
-  margin-right: 10px;
+	cursor: pointer;
+	outline: none;
+	border: 1px solid #000;
+	background-color: #f4eded;
+	padding: 7px 9px 4px 9px;
+	margin-right: 10px;
+	border-radius: 3px;
+	border-color: #563333;
+	color: #563333;
 }
 
 .show {

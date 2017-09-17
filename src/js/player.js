@@ -2,10 +2,10 @@ function Player() {
   var self = this;
 
   // 선택된 플레이리스트
-  this.choicePlaylist;
+  this.choicePlaylist = null;
 
   // 플레이된 플레이리스트
-  this.lastPlayPlaylist;
+  this.lastPlayPlaylist = null;
 
   // 재생중인 파일
   this.choiceMusic = null;
@@ -43,6 +43,11 @@ function Player() {
 Player.prototype.prev = function _PREV() {
   var self = this;
 
+  if (self.choicePlaylist === null) {
+    alert('선택된 리스트가 없습니다.');
+    return;
+  }
+
   if (self.targitingMusic) {
     self.choiceMusic = self.targitingMusic;
     self.targitingMusic = null;
@@ -62,6 +67,11 @@ Player.prototype.prev = function _PREV() {
 
 Player.prototype.next = function _NEXT() {
   var self = this;
+
+  if (self.choicePlaylist === null) {
+    alert('선택된 리스트가 없습니다.');
+    return;
+  }
 
   if (self.targitingMusic) {
     self.choiceMusic = self.targitingMusic;
