@@ -4,12 +4,13 @@
   "description": "nhn test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/browser-sync start --server --files 'src/css/*.css,src/js/*.js,index.html'",
     "start": "./node_modules/.bin/browser-sync start --server]"
   },
   "author": "superlucky",
   "devDependencies": {
-    "browser-sync": "^2.18.13"
+    "browser-sync": "^2.18.13",
+    "eslint": "^4.7.0",
+    "eslint-config-airbnb-es5": "^1.2.0"
   }
 }
