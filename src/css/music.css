@@ -39,7 +39,7 @@ nav .progress {
   position: relative;
   margin-top: 10px;
   height: 7px;
-  border: 1px solid blue;
+  border: 1px solid #000;
   border-radius: 5px;
 }
 nav .progress div {
@@ -47,7 +47,7 @@ nav .progress div {
   left: 0;
   top: 0;
   width: 0%;
-  background-color: blue;
+  background-color: #000;
   bottom: 0;
 }
 
@@ -73,10 +73,20 @@ ul.playlist-nav li {
   width: 70px;
   text-align: center;
   color: #cdcdcd;
+  position: relative;
 }
 ul.playlist-nav li.active {
   border-color:  #000;
   color: #000;
+}
+
+ul.playlist-nav li input {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom 0;
 }
 
 .music-nav {

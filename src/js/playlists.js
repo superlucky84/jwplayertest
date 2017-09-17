@@ -23,7 +23,49 @@ function PlayLists (player) {
     player.choicePlaylist.sort("name");
   });
 
+	EventUtil.addHandler($playlistnav.getElementsByTagName("input"), "focusout", function (event) {
+
+  }.bind(this));
+
+	EventUtil.addHandler($playlistnav, "dblclick", function (event) {
+
+    if (EventUtil.getTarget(event).tagName != "LI") {
+      return;
+    }
+
+    var self = this;
+
+    var $listButton =  EventUtil.getTarget(event);
+    this.activeList = $listButton.id;
+    if (this.activeList == "allfile") {
+      return;
+    }
+    var $input = $listButton.getElementsByTagName("input")[0];
+    $input.style.display = "block";
+    $input.focus();
+
+    EventUtil.addHandler($input, "focusout", focusoutEvent);
+    EventUtil.addHandler($input, "keydown", keydown);
+
+    function keydown(event) {
+      if (event.keyCode != 13) {
+        return;
+      }
+      focusoutEvent(event);
+    }
+    function focusoutEvent(event) {
+      self.rename($input.value,$listButton);
+      $input.style.display = "none";
+      EventUtil.removeHandler($input,"keydown", keydown);
+      EventUtil.removeHandler($input,"focusout", focusoutEvent);
+    }
+
+  }.bind(this));
+
 	EventUtil.addHandler($playlistnav, "click", function (event) {
+    if (EventUtil.getTarget(event).tagName != "LI") {
+      return;
+    }
 
     if (this.activeList != "allfile") {
       var preActivePlaylist = this.findBySeq(Number(this.activeList.replace(/listnum/g,"")));
@@ -64,6 +106,17 @@ function PlayLists (player) {
 	}.bind(this));
 }
 
+PlayLists.prototype.rename = function (rename, $listButton) {
+
+  $listButton.innerHTML = rename+"<input type='text' value='"+rename+"' />";
+
+  var activePlaylist = this.findBySeq(Number(this.activeList.replace(/listnum/g,"")));
+  activePlaylist.name = rename;
+  //activePlaylist
+  //rename
+
+}
+
 PlayLists.prototype.findBySeq = function (seq) {
   var targetPlaylist = null;
 
@@ -87,7 +140,7 @@ PlayLists.prototype.add = function (playlist) {
   var $li = document.createElement('li');
   $li.id = "listnum"+this.lastSeq;
   var div = $playlistnav.appendChild($li);
-  $li.innerHTML = playlist.name;
+  $li.innerHTML = playlist.name+"<input type='text' value='"+playlist.name+"' />";
 
 }
 
