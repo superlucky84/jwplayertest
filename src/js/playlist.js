@@ -38,14 +38,12 @@ function PlayList (playListName, player) {
 PlayList.prototype.findFileDelete = function(checkedlist) {
 
   var self = this;
-  var alertList = [];
   this.list.forEach(function(fileObj){
     if (checkedlist.indexOf(fileObj.seq) >= 0) {
       var delIdx = self.findIdx(fileObj.seq);
       self.list.splice(delIdx,1);
     }
   });
-  return alertList;
 
 }
 

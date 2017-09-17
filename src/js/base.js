@@ -44,13 +44,17 @@ var EventUtil = {
 		}
 	},
   addClass: function (target, className) {
-    var origClassName = target.className;
-    target.className = origClassName+" "+className;
+    if (target) {
+      var origClassName = target.className;
+      target.className = origClassName+" "+className;
+    }
   },
   removeClass: function (target, className) {
-    var origClassName = target.className;
-    var re = new RegExp("\s?"+className+"\s?","g");
-    target.className = origClassName.replace(re,"");
+    if (target) {
+      var origClassName = target.className;
+      var re = new RegExp("\s?"+className+"\s?","g");
+      target.className = origClassName.replace(re,"");
+    }
   }
 
 };

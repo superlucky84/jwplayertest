@@ -8,6 +8,9 @@ function Player() {
   // 선택된 플레이리스트
   this.choicePlaylist;
 
+  // 플레이된 플레이리스트
+  this.lastPlayPlaylist;
+
   // 재생중인 파일
   this.choiceMusic = null;
 
@@ -130,6 +133,9 @@ Player.prototype.play = function() {
     self.choiceMusic = self.targitingMusic;
   }
 
+  // 마지막으로 선택된 플레이리스트체크
+  self.lastPlayPlaylist = self.choicePlaylist;
+
   self.choicePlaylist.changePlay(self.choiceMusic.seq);
 
   self.timer = setInterval(function() {
@@ -144,6 +150,10 @@ Player.prototype.play = function() {
       "name": self.choiceMusic.name,
       "term": calculterm(self.choiceMusic.term - self.spendTime)
     });
+    var percent = parseInt((self.spendTime / self.choiceMusic.term*100));
+    //document.getElementById("progressGage").style = "width:"+percent+"%";
+    document.getElementById("progressGage").style.width = percent+"%";
+
     document.getElementById("file-info").innerHTML = replaceHtml;
   }, 1000);
 

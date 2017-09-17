@@ -54,7 +54,7 @@ function PlayLists (player) {
     }
     else {
 
-      player.choicePlaylist = null;
+      //player.choicePlaylist = null;
 
       document.getElementById("filelistWrap").className = "show";
       document.getElementById("playlistWrap").className = "hide";

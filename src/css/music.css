@@ -36,10 +36,19 @@ nav .file-info .term {
 }
 
 nav .progress {
+  position: relative;
   margin-top: 10px;
   height: 7px;
   border: 1px solid blue;
   border-radius: 5px;
+}
+nav .progress div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  background-color: blue;
+  bottom: 0;
 }
 
 
@@ -95,7 +104,6 @@ main ul.list li.active {
 }
 main ul.list li.play {
   color: red;
-  font-weight: bold;
 }
 
 main ul.list li:last-child {

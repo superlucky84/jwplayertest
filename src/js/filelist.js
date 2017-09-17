@@ -4,6 +4,7 @@ function FileList (playLists, player) {
 
   this.$filelist = document.getElementById("filelist");
 
+
   // ADD EVENT
 	var $createPlayletButton = document.getElementById("craeatePlaylist");
 	var $deleteFileButton = document.getElementById("deleteFile");
@@ -12,11 +13,46 @@ function FileList (playLists, player) {
 		this.createPlaylist(playLists, player);
 	}.bind(this));
 
+
+
+	EventUtil.addHandler(this.$filelist, "dblclick", function (event) {
+
+    // 선택된 파일 가져오기
+    var $item = EventUtil.getTarget(event);
+    if ($item.tagName !="SPAN") {
+      return;
+    }
+    var seq = parseInt($item.getElementsByTagName("input")[0].value);
+    var fileObj = this.findBySeq(seq);
+
+    var targetPlaylist = null;
+
+    // 플레이 했던 플레이리스타가 있으면 그곳에 추가
+    if (player.lastPlayPlaylist) {
+      targetPlaylist = player.lastPlayPlaylist;
+      player.lastPlayPlaylist.add(fileObj);
+      alert(player.lastPlayPlaylist.name+'에 추가되었습니다.');
+    }
+
+    // 새로 만들기
+    else {
+      targetPlaylist = new PlayList(playLists.generateName(), player);
+      targetPlaylist.add(fileObj);
+      playLists.add(targetPlaylist);
+    }
+
+    // 해당 리스트에가서 플레이 시킨다.
+    player.choiceMusic = fileObj;
+    player.choicePlaylist = targetPlaylist;
+    player.smartPlay();
+
+	}.bind(this));
+
+
 	EventUtil.addHandler($deleteFileButton, "click", function () {
 
     var checkedlist = [];
     var inputs = this.$filelist.getElementsByTagName("input");
-
     for ( var inputIdx in inputs) {
       if (!inputs[inputIdx].checked) { 
         continue;
@@ -24,10 +60,7 @@ function FileList (playLists, player) {
       checkedlist.push(parseInt(inputs[inputIdx].value));
       inputs[inputIdx].checked = false;
     }
-
-  
     this.deleteFileChk(playLists, checkedlist);
-
 	}.bind(this));
 
 }
