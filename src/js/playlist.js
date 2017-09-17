@@ -21,6 +21,26 @@ function PlayList (playListName, player) {
 
     var $item = EventUtil.getTarget(event);
 
+    if ($item.tagName == "SPAN") {
+      console.log('aa');
+      var deleteSeq = Number($item.id.replace(/deleteitem-/g,""));
+
+      if (this.list.length == 1) {
+        alert('마지막 곡은 지우지 못합니다.');
+        return;
+      }
+
+      // 재생중인 곡 삭제일때
+      if (this.playSeqId == deleteSeq) {
+        player.next();
+      }
+
+      this.findFileDelete([deleteSeq]);
+      this.draw();
+
+      return;
+    }
+
     if (this.activeSeqId != Number($item.id.replace(/playlist-/g,""))) {
 
       if (this.activeSeqId) {
@@ -138,7 +158,13 @@ PlayList.prototype.add = function (fileObj) {
 
 }
 
+PlayList.prototype.clear = function () {
+  this.list = [];
+  this.removeHandler();
+}
+
 PlayList.prototype.addHandler = function () {
+
 	EventUtil.addHandler(this.$playlist, "click", this.thisHandler);
 	EventUtil.addHandler(this.$playlist, "dblclick", this.thisDblHandler);
 }

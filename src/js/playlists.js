@@ -13,19 +13,47 @@ function PlayLists (player) {
 
   this.$sortNameButton = document.getElementById("sortName");
   this.$sortRandomButton = document.getElementById("sortRandom");
+  this.$deletePlaylist = document.getElementById("playlistDelete");
 
-    
-  EventUtil.addHandler(this.$sortRandomButton, "click", function(event) {
-    player.choicePlaylist.sort("random");
-  });
+  this.sortRandomHandler = sortRandom.bind(this);
+  this.sortNameHandler = sortName.bind(this);
 
-  EventUtil.addHandler(this.$sortNameButton, "click", function(event) {
-    player.choicePlaylist.sort("name");
-  });
+  EventUtil.addHandler(this.$deletePlaylist, "click", function(event) {
+    console.log(player.choicePlaylist.seq);
 
-	EventUtil.addHandler($playlistnav.getElementsByTagName("input"), "focusout", function (event) {
+    player.choicePlaylist.clear();
+    player.choicePlaylist = null;
+
+
+
+    var deltetargetName = this.activeList;
+    this.activeList = "allfile";
+
+    document.getElementById("allfile").click();
+
+
+    var deleteIdx = this.findIdx(Number(deltetargetName.replace(/listnum/g,"")));
+    this.list.splice(deleteIdx,1);
+
+
+    var deleteTargetDom = document.getElementById(deltetargetName);
+    document.getElementById("playlistnav").removeChild(deleteTargetDom);
+
+
+
 
   }.bind(this));
+    
+  EventUtil.addHandler(this.$sortRandomButton, "click", this.sortRandomHandler);
+  EventUtil.addHandler(this.$sortNameButton, "click", this.sortNameHandler);
+
+  function sortRandom(event) {
+    player.choicePlaylist.sort("random");
+  }
+
+  function sortName(event) {
+    player.choicePlaylist.sort("name");
+  }
 
 	EventUtil.addHandler($playlistnav, "dblclick", function (event) {
 
@@ -95,14 +123,10 @@ function PlayLists (player) {
       document.getElementById("playlistWrap").className = "show";
     }
     else {
-
       //player.choicePlaylist = null;
-
       document.getElementById("filelistWrap").className = "show";
       document.getElementById("playlistWrap").className = "hide";
     }
-
-
 	}.bind(this));
 }
 
@@ -115,6 +139,16 @@ PlayLists.prototype.rename = function (rename, $listButton) {
   //activePlaylist
   //rename
 
+}
+
+PlayLists.prototype.findIdx = function(seq) {
+  var idx = 0;
+  this.list.forEach(function(element,arrIdx) {
+    if (element.seq == seq) {
+      idx = arrIdx;
+    }
+  });
+  return idx;
 }
 
 PlayLists.prototype.findBySeq = function (seq) {

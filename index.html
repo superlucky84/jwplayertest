@@ -39,6 +39,7 @@
 		<div class="buttons">
 			<button type="button" id="sortName">가나다 정렬</button>
 			<button type="button" id="sortRandom">랜덤 정렬</button>
+			<button type="button" id="playlistDelete">리스트삭제</button>
 		</div>
 		<ul id="playlist" class="list"></ul>
 	</div>
@@ -61,6 +62,7 @@
 
 <script id="playlist-item" type="text/template">
   <li id="playlist-{$seq}">
+    <span id="deleteitem-{$seq}">x</span>
 		{$name}
     <span class="time">{$term}</span>
   </li>
