@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "./node_modules/.bin/browser-sync start --server --files 'src/css/*.css,src/js/*.js,index.html'",
-    "start": "./node_modules/.bin/browser-sync start --server]",
+    "start": "./node_modules/.bin/browser-sync start --server",
     "lint": "eslint --ignore-path=./src/js/base.js ./src/js"
   },
   "author": "superlucky",
